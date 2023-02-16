@@ -118,3 +118,19 @@ will have minimal impact on data loss.
 
 ### Chapter 03. Sharding Databases
 
+Database sharding is a type of horizontal partitioning that splits large databases into smaller components, which are
+faster and easier to manage. A shard is an individual partition that exists on separate database server instance to
+spread load. Auto sharding or data sharding is needed when a dataset is too big to be stored in a single database.
+
+As both the database size and number of transactions increase, so does the response time for querying the database.
+Costs associated with maintaining a huge database can also skyrocket due to the number and quality of computers we need
+to manage our workload. Data shards, on the other hand, have fewer hardware and software requirements and can be managed
+on less expensive servers.
+
+![Database Sharding](DatabaseSharding.PNG)
+
+Based on some data field or hash key, shards can be selected and stored the data into. Each shard also replicates the
+data to other shards for hot standby fail-over recovery.
+
+![Hash-Based Sharding](HashBasedSharding.PNG)
+
