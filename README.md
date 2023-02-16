@@ -8,16 +8,20 @@ could be seen as the application of system theory to product development.
 ## Table of contents
 
 1. Scalability
-   - Single Server
-   - Separating out the database 
-   - Vertical Scaling
-   - Horizontal Scaling
+    - Single Server
+    - Separating out the database
+    - Vertical Scaling
+    - Horizontal Scaling
 2. Fail-over Strategies
-3. Algorithms and Data Structures
-4. Working with Big Data
-5. Design Interview Strategies
-6. Mock Design Interviews
-7. General Tech Interview Tips
+    - Cold Standby
+    - Warm Standby
+    - Hot Standby
+3. Sharding Databases
+4. Algorithms and Data Structures
+5. Working with Big Data
+6. Design Interview Strategies
+7. Mock Design Interviews
+8. General Tech Interview Tips
 
 ### Youtube
 
@@ -83,4 +87,34 @@ web traffic expected etc.
 ---
 
 ### Chapter 02. Fail-over Strategies
+
+#### Servers are provisioned as:
+
+- Own company's data centers
+- Cloud services: Amazon EC2, Google Compute Engine, Azure VM's, etc.
+- Fully managed "serverless" services: Lambda, Kinesis, Athena, etc.
+
+#### Failover servers: Cold Standby
+
+Periodic backup of data is done on the current primary server. The storage device can be anything like external hard
+disk, magnetic tape, etc. Once the current primary server goes down - the standby server is "prepared" to be in same
+state as primary from the backup storage.
+
+Drawback: may take time to prepare the standby server and data will be lost during this time.
+
+#### Failover servers: Warm Standby
+
+Instead of doing periodic backup, we can replicate data in realtime. Data replication is already available in major
+databases which will automatically sync up the data to standby server in realtime.
+
+#### Failover servers: Hot Standby
+
+Servers can directly write to all the different databases (primary, secondary, etc.) in a distributed fashion.
+Similarly, the servers can also do distributed reads from all the databases. Thus, any failure of a single database host
+will have minimal impact on data loss.
+
+
+---
+
+### Chapter 03. Sharding Databases
 
