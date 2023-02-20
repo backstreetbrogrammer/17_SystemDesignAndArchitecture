@@ -134,3 +134,32 @@ data to other shards for hot standby fail-over recovery.
 
 ![Hash-Based Sharding](HashBasedSharding.PNG)
 
+#### MongoDB sharding example
+
+![MongoDB Architecture](MongoDB.PNG)
+
+1. Each Replica Server is a "shard" and it contains Primary nodes and several secondary nodes
+2. Primary node works as a router to distribute the data amongst various secondary nodes
+3. If Primary node goes down => one of the secondary nodes becomes primary automatically until primary goes up again
+4. All the information about primary nodes, partitioning key, etc. is stored in Config Servers
+5. Config Server is also having 2-3 nodes same as Primary -> Secondary as for Replica Set / Shards
+
+_Drawback_
+
+Need to maintain lots of servers and thus, it's expensive.
+
+#### Cassandra sharding example
+
+![Cassandra Architecture](Cassandra.PNG)
+
+Since it is a distributed database, Cassandra can (and usually does) have multiple nodes. A node represents a single
+instance of Cassandra. These nodes communicate with one another through a protocol called **gossip**, which is a process
+of computer peer-to-peer communication. Cassandra also has a master-less architecture (no primary / secondary node
+concept) – any node in the database can provide the exact same functionality as any other node – contributing to
+Cassandra’s robustness and resilience. Multiple nodes can be organized logically into a cluster, or "ring". We can also
+have multiple datacenters.
+
+Eventual consistency is a consistency model used in distributed computing to achieve high availability that informally
+guarantees that, if no new updates are made to a given data item, eventually all accesses to that item will return the
+last updated value.
+
