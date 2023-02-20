@@ -17,11 +17,16 @@ could be seen as the application of system theory to product development.
     - Warm Standby
     - Hot Standby
 3. Sharding Databases
-4. Algorithms and Data Structures
-5. Working with Big Data
-6. Design Interview Strategies
-7. Mock Design Interviews
-8. General Tech Interview Tips
+    - MongoDB sharding example
+    - Cassandra sharding example
+    - Sharded Databases are "NoSQL"
+    - Normalization vs Denormalization
+4. Data Lakes
+5. Algorithms and Data Structures
+6. Working with Big Data
+7. Design Interview Strategies
+8. Mock Design Interviews
+9. General Tech Interview Tips
 
 ### Youtube
 
@@ -162,4 +167,36 @@ have multiple datacenters.
 Eventual consistency is a consistency model used in distributed computing to achieve high availability that informally
 guarantees that, if no new updates are made to a given data item, eventually all accesses to that item will return the
 last updated value.
+
+#### Sharded Databases are "NoSQL"
+
+- Most "NoSQL" databases actually do support SQL operations and use SQL as their API
+- A formal schema may not be needed and can support unstructured data
+- Works best with simple key-value lookups
+- Tough to do **joins** across shards
+- Re-sharding is very inefficient process
+- Hotspots Celebrity problem: a single shard may contain most of the data and the load may not be distributed properly
+- Examples: MongoDB, Cassandra, DynamoDB, HBase
+
+#### Normalization vs Denormalization
+
+**Normalization** is the method used in a database to reduce the data redundancy and data inconsistency from the table.
+It is the technique in which non-redundancy and consistency data are stored in the set schema. By using normalization,
+the number of tables is increased.
+
+**Denormalization** is used to add the redundancy to execute the query quickly. It is a technique in which data are
+combined to execute the query quickly. By using denormalization, the number of tables is decreased.
+
+![Normalization vs Denormalization](NormalizedVsDenormalized.PNG)
+
+| S.No.          | Normalization                                                | Denormalization                                    |
+|----------------|--------------------------------------------------------------|----------------------------------------------------|
+| 1              | Non-redundancy and consistency data are stored in set schema | Flexible schema                                    |
+| 2              | Data redundancy and inconsistency is reduced                 | Redundancy is added for quick execution of queries |
+| 3              | Minimizes data footprint                                     | Can inflate data sizes and slow data ingest        |
+| 4              | Can lead to expensive joins                                  | Data is pre-joined in single table to avoid joins  |
+
+---
+
+### Chapter 04. Data Lakes
 
