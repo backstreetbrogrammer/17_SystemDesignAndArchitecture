@@ -19,14 +19,16 @@ could be seen as the application of system theory to product development.
 3. Sharding Databases
     - MongoDB sharding example
     - Cassandra sharding example
+    - Gossip Protocol
     - Sharded Databases are "NoSQL"
     - Normalization vs Denormalization
 4. Data Lakes
-5. Algorithms and Data Structures
-6. Working with Big Data
-7. Design Interview Strategies
-8. Mock Design Interviews
-9. General Tech Interview Tips
+5. ACID compliance
+6. Algorithms and Data Structures
+7. Working with Big Data
+8. Design Interview Strategies
+9. Mock Design Interviews
+10. General Tech Interview Tips
 
 ### Youtube
 
@@ -168,6 +170,25 @@ Eventual consistency is a consistency model used in distributed computing to ach
 guarantees that, if no new updates are made to a given data item, eventually all accesses to that item will return the
 last updated value.
 
+#### Gossip Protocol
+
+A gossip protocol or epidemic protocol is a procedure or process of computer peer-to-peer communication that is based on
+the way epidemics spread. Some distributed systems use peer-to-peer gossip to ensure that data is disseminated to all
+members of a group. Some ad-hoc networks have no central registry and the only way to spread common data is to rely on
+each member to pass it along to their neighbors.
+
+The Gossip protocol is used to repair the problems caused by **multicasting**; it is a type of communication where a
+piece of information or gossip in this scenario, is sent from one or more nodes to a set of other nodes in a network.
+This is useful when a group of clients in the network require the same data at the same time. But there are many
+problems that occur during multicasting, if there are many nodes present at the recipient end, latency increases; the
+average time for a receiver to receive a multicast.
+
+To get this multicast message or gossip across the desired targets in the group, the gossip protocol sends out the
+gossip periodically to **random nodes** in the network, once a random node receives the gossip, it is said to be
+infected due to the gossip. Now the random node that receives the gossip does the same thing as the sender, it sends
+multiple copies of the gossip to random targets. This process continues until the target nodes get the multicast. This
+process turns the infected nodes to uninfected nodes after sending the gossip out to random nodes.
+
 #### Sharded Databases are "NoSQL"
 
 - Most "NoSQL" databases actually do support SQL operations and use SQL as their API
@@ -199,4 +220,19 @@ combined to execute the query quickly. By using denormalization, the number of t
 ---
 
 ### Chapter 04. Data Lakes
+
+- Common approach for **big unstructured data** is to put all of it into text files (csv, json, etc.) or logs and store
+  into a big distributed storage system like **Amazon S3** => this is called a **"data lake"**.
+- Another process **Amazon Glue** will create a schema for the data
+- Other cloud-based features let us query the data:
+    - **Amazon Athena** (serverless)
+    - **Amazon Redshift** (distributed data warehouse)
+
+![Data Lakes](DataLakes.PNG)
+
+---
+
+### Chapter 05. ACID compliance
+
+
 
