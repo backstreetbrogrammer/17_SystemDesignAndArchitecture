@@ -24,11 +24,13 @@ could be seen as the application of system theory to product development.
     - Normalization vs Denormalization
 4. Data Lakes
 5. ACID compliance
-6. Algorithms and Data Structures
-7. Working with Big Data
-8. Design Interview Strategies
-9. Mock Design Interviews
-10. General Tech Interview Tips
+6. CAP Theorem
+7. Caching
+8. Algorithms and Data Structures
+9. Working with Big Data
+10. Design Interview Strategies
+11. Mock Design Interviews
+12. General Tech Interview Tips
 
 ### Youtube
 
@@ -234,5 +236,65 @@ combined to execute the query quickly. By using denormalization, the number of t
 
 ### Chapter 05. ACID compliance
 
+ACID, an acronym for "Atomicity, Consistency, Isolation, and Durability" is a set of principles that ensure database
+transactions are processed reliably. When any data storage system upholds these principles, it is said to be ACID
+compliant.
 
+**Atomicity**:
+> Atomicity means that we guarantee that either all the transaction succeeds or none of it does. We don’t get part
+> of it succeeding and part of it not. If one part of the transaction fails, the whole transaction fails.
+> With atomicity, it’s either “all or nothing”.
+
+**Consistency**:
+> This ensures that we guarantee that all data will be consistent. All data will be valid according to all defined
+> rules, including any constraints, cascades, and triggers that have been applied on the database.
+
+**Isolation**:
+> Guarantees that all transactions will occur in isolation. No transaction will be affected by any other transaction.
+> So a transaction cannot read data from any other transaction that has not yet completed.
+
+**Durability**:
+> Durability means that, once a transaction is committed, it will remain in the system – even if there’s a system crash
+> immediately following the transaction. Any changes from the transaction must be stored permanently. If the system
+> tells the user that the transaction has succeeded, the transaction must have, in fact, succeeded.
+
+---
+
+### Chapter 06. CAP Theorem
+
+The CAP theorem, also named Brewer's theorem after computer scientist Eric Brewer, states that any distributed data
+store can provide only two of the following three guarantees:
+
+1. **Consistency**: Every read receives the most recent write or an error.
+2. **Availability**: Every request receives a (non-error) response, without the guarantee that it contains the most
+   recent write.
+3. **Partition-tolerance**: The system continues to operate despite an arbitrary number of messages being dropped (or
+   delayed) by the network between nodes.
+
+![CAP Theorem](CAPTheorem.PNG)
+
+When a network partition failure happens, it must be decided whether to do one of the following:
+
+- cancel the operation and thus decrease the availability but ensure consistency
+- proceed with the operation and thus provide availability but risk inconsistency
+
+Thus, if there is a **network partition**, one has to choose between **consistency** or **availability**. Note that
+consistency as defined in the CAP theorem is quite different from the consistency guaranteed in ACID database
+transactions.
+
+Eric Brewer argues that the often-used "two out of three" concept can be somewhat misleading because system designers
+need only to sacrifice consistency or availability in the presence of partitions, but that in many systems partitions
+are rare.
+
+#### Example Databases
+
+![CAP Theorem DBs](CAPTheoremDatabases.PNG)
+
+- **MySQL**: **Available** and **Consistent** but not as flexible for horizontal scaling or **Partition-Tolerant**
+- **MongoDB**: **Consistent** and **Partition-Tolerant** but because of single master => trade-off is **Availability**
+- **Cassandra**: **Availability** and **Partition-Tolerant** but no single master => trade-off is eventually consistent
+
+---
+
+### Chapter 07. Caching
 
