@@ -25,12 +25,16 @@ could be seen as the application of system theory to product development.
 4. Data Lakes
 5. ACID compliance
 6. CAP Theorem
+    - Example Databases
 7. Caching
-8. Algorithms and Data Structures
-9. Working with Big Data
-10. Design Interview Strategies
-11. Mock Design Interviews
-12. General Tech Interview Tips
+    - Eviction strategies for Caching
+    - Popular Caching Technologies
+8. Content Delivery Networks (CDNs)
+9. Algorithms and Data Structures
+10. Working with Big Data
+11. Design Interview Strategies
+12. Mock Design Interviews
+13. General Tech Interview Tips
 
 ### Youtube
 
@@ -297,4 +301,80 @@ are rare.
 ---
 
 ### Chapter 07. Caching
+
+In computing, a cache is a high-speed data storage layer which stores a subset of data, typically transient in nature,
+so that future requests for that data are served up faster than is possible by accessing the data’s primary storage
+location. Caching allows us to efficiently reuse previously retrieved or computed data.
+
+The data in a cache is generally stored in fast access hardware such as RAM (Random-access memory) and may also be used
+in correlation with a software component. A cache's primary purpose is to increase data retrieval performance by
+reducing the need to access the underlying **slower** storage layer.
+
+Trading off capacity for speed, a cache typically stores a subset of data transiently, in contrast to databases whose
+data is usually complete and durable.
+
+![Caching](Caching.PNG)
+
+Few points about caching:
+
+- Cache servers are **horizontally scaled** servers
+- Application web servers may use some **hashing mechanism** on requests to search from a particular cache server
+- Its **in-memory** and fast and most appropriate for applications with more reads than writes
+- **Expiration policy** is crucial as it dictates how long the data is cached:
+    - too long and the data may go stale
+    - too short and the cache won't do much good
+- May be effected by **Hotspots** or **Celebrity problem**: very popular data sitting on a cache server will be searched
+  much more than other not-so-popular data on another cache server; thus one cache server having most of the traffic
+- **Cold-start** may be a problem, meaning that when system starts - cache will be empty and all the initial requests
+  will hit the underlying database hampering the performance until the cache is fully warmed up
+
+#### Eviction strategies for Caching
+
+- LRU (Least Recently Used)
+
+> The Least Recently Used (LRU) cache is a cache eviction algorithm that organizes elements in order of use. In LRU, as
+> the name suggests, the element that hasn't been used for the longest time will be evicted from the cache.
+
+![LRU](LRU.PNG)
+
+- LFU (Least Frequently Used)
+
+> Least Frequently Used (LFU) is a caching algorithm in which the least frequently used cache block is removed whenever
+> the cache is overflowed. In LFU we check the old page as well as the frequency of that page and if the frequency of
+> the page is larger than the old page we cannot remove it and if all the old pages are having same frequency then take
+> last i.e. FIFO method for that and remove that page.
+
+- FIFO (First In First Out)
+
+> Elements inserted first are the one which are removed first, or in other words, the oldest elements in cache are
+> evicted.
+
+#### Popular Caching Technologies
+
+- Memcached
+
+> Memcached is an in-memory key-value store for small chunks of arbitrary data (strings, objects) from results of
+> database calls, API calls, or page rendering.
+
+- Redis
+
+> Redis is an open source, in-memory, key-value data store most commonly used as a primary database, cache, message
+> broker, and queue.
+
+- NCache
+
+> NCache is an Open Source in-memory distributed cache for .NET, Java, Node.js and Scala applications.
+
+- Ehcache
+
+> Ehcache is an open source library implemented in Java for implementing caches in Java programs, especially local and
+> distributed caches in main memory or on the hard disk.
+
+- ElastiCache
+
+> Amazon ElastiCache is a fully managed in-memory data store and cache service by Amazon Web Services.
+
+---
+
+### Chapter 08. Content Delivery Networks (CDNs) 
 
