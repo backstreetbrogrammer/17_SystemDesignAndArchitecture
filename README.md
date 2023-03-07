@@ -30,11 +30,12 @@ could be seen as the application of system theory to product development.
     - Eviction strategies for Caching
     - Popular Caching Technologies
 8. Content Delivery Networks (CDNs)
-9. Algorithms and Data Structures
-10. Working with Big Data
-11. Design Interview Strategies
-12. Mock Design Interviews
-13. General Tech Interview Tips
+9. Resiliency
+10. Algorithms and Data Structures
+11. Working with Big Data
+12. Design Interview Strategies
+13. Mock Design Interviews
+14. General Tech Interview Tips
 
 ### Youtube
 
@@ -376,5 +377,66 @@ Few points about caching:
 
 ---
 
-### Chapter 08. Content Delivery Networks (CDNs) 
+### Chapter 08. Content Delivery Networks (CDNs)
+
+A content delivery network (CDN) refers to a geographically distributed group of servers which work together to provide
+fast delivery of Internet content.
+
+A CDN allows for the quick transfer of assets needed for loading Internet content including HTML pages, javascript
+files, stylesheets, images, and videos.
+
+The goal is to provide high availability and performance by distributing the service spatially relative to end users.
+
+![CDN](CDN.PNG)
+
+Main CDN Providers:
+
+- AWS CloudFront
+- Google Cloud CDN
+- Microsoft Azure CDN
+- Akamai
+- CloudFlare
+
+---
+
+### Chapter 09. Resiliency
+
+Things that can fail:
+
+- a single server
+- an entire rack
+- an entire data center or "availability zone"
+- an entire region
+- an entire country
+- an entire continent ...
+
+Things that can cause failure:
+
+- a bug in the system
+- a hacker hacks the system
+- hardware failure
+- a connection (network plug, switches, routers) goes down
+- any other disaster like fire, flood, earthquake, etc.
+
+One possible solution for resiliency is **Geographic routing**.
+
+#### Geographic routing
+
+Geographic routing (also called georouting or position-based routing) is a routing principle that relies on geographic
+position information. It is mainly proposed for wireless networks and based on the idea that the source sends a message
+to the geographic location of the destination instead of using the network address.
+
+Geographic routing requires that each node can determine its own location and that the source is aware of the location
+of the destination. With this information, a message can be routed to the destination without knowledge of the network
+topology or a prior route discovery.
+
+![Geographic routing](GeoRouting.PNG)
+
+So in essence, we should have the following check list:
+
+- back up servers or secondary servers should be spread across multiple racks, availability zones and regions
+- over-provisioning of systems to ensure that system has enough capacity to survive a failure at any reasonable scale
+- need to balance budget vs availability
+
+---
 
